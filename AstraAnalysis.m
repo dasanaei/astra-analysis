@@ -25,14 +25,16 @@ function [averageMaxAlt, averageMaxDistance, averageVelocity, maxVelocity] = Ast
 %   averageMaxDistance: the average max distance (landing distance) (km)
 %   averageVelocity: the average velocity in the flight relative to the
 %   ground (m/s)
-%
-%
+%   averageAscentRate: the average ascent acceleration  (m/s^2)
+%  
 %%
 %Initializations
 
 clc 
 close all
-data = csvread(file, 2);
+dir = pwd;
+AstraData = strcat(dir,'/Astra-Data/', file);
+data = csvread(AstraData, 2);
 numLaunch = data(:,1);
 time = data(:,2);
 lat = data(:,3);
@@ -41,7 +43,7 @@ altitude = data(:,5);
 altitude = altitude / 1000;
 time = time * 0.000277778;
 %%
-figure(4)
+%figure(4)
 hold on
 for u = 1:1
     altitude1 = altitude(numLaunch == u) * 1000;
@@ -53,8 +55,8 @@ for o = 2:ind
     
     
 end
-mean(ascentRate)
-plot(time1(1:ind), ascentRate)
+averageAscentRate = mean(ascentRate)
+%plot(time1(1:ind), ascentRate)
 
 end
 %%
@@ -85,7 +87,7 @@ for i = 1:simNum
     averageTimeBurst = averageTimeBurst + burstTime;
     averageMaxAlt = averageMaxAlt + MaxAlt;
 end
-averageMaxAlt = averageMaxAlt / i;
+averageMaxAlt = averageMaxAlt / i
 averageTimeBurst = averageTimeBurst / i
 
 %%
@@ -116,7 +118,7 @@ for k = 1:simNum-1
     plot(time(numLaunch == k), distance)
     
 end
-averageMaxDistance = averageMaxDistance / (simNum-1);
+averageMaxDistance = averageMaxDistance / (simNum-1)
 title('Distance vs Time')
 ylabel('Distance (km)')
 xlabel('Time (hours)')
@@ -167,8 +169,8 @@ for m = 1:simNum-1
     plot(timeSim * 0.000277778, C)
 end
 averageVelocity = averageVelocity / (simNum-1);
-maxVelocity = maxVelocity / (simNum - 1);
-ylim([0 inf])
+maxVelocity = maxVelocity / (simNum - 1)
+ylim([0 inf]);
 title('Velocity vs Time')
 ylabel('Velocity (m/s)')
 xlabel('Time (hours)')
