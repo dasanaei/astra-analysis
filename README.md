@@ -2,7 +2,7 @@
 A tool to analyze simulated data from ASTRA High Altitude Balloon Flight Planner
 
 ## Inputs:
-- An exported .csv data file from [ASTRA High Altitude Balloon Flight Planner](http://astra-planner.soton.ac.uk/). Place this file in the `Astra-Data` folder
+- The string name of an exported .csv data file from [ASTRA High Altitude Balloon Flight Planner](http://astra-planner.soton.ac.uk/). Place this file in the `Astra-Data` folder
 - number of simulations that you want to analyze (must be less than the quantity exported from ASTRA)
 
 ## Outputs:
